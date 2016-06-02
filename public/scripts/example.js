@@ -10,6 +10,16 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+/*
+  - CommentBox
+    - CommentList
+      - Comment
+    - CommentForm
+ */
+
+/**
+ * Comment
+ */
 var Comment = React.createClass({
   rawMarkup: function() {
     var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
@@ -28,6 +38,9 @@ var Comment = React.createClass({
   }
 });
 
+/**
+ * CommentBox
+ */
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
     $.ajax({
@@ -82,6 +95,9 @@ var CommentBox = React.createClass({
   }
 });
 
+/**
+ * CommentList
+ */
 var CommentList = React.createClass({
   render: function() {
     var commentNodes = this.props.data.map(function(comment) {
@@ -99,6 +115,9 @@ var CommentList = React.createClass({
   }
 });
 
+/**
+ * CommentForm
+ */
 var CommentForm = React.createClass({
   getInitialState: function() {
     return {author: '', text: ''};
@@ -140,6 +159,9 @@ var CommentForm = React.createClass({
   }
 });
 
+/**
+ * render view 
+ */
 ReactDOM.render(
   <CommentBox url="/api/comments" pollInterval={2000} />,
   document.getElementById('content')
